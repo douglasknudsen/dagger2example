@@ -18,6 +18,7 @@ public interface SubActivityComponent {
     void inject(SecondActivity secondActivity);
     void inject(ThirdActivity secondActivity);
 
+
     ModelOne modelOne();
     CommandSample commandSample();
 }

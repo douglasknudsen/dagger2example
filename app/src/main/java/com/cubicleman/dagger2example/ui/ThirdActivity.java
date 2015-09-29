@@ -19,7 +19,7 @@ import timber.log.Timber;
 /**
  * @since 9/27/15.
  */
-public class ThirdActivity extends BaseActivity {
+public class ThirdActivity extends ActivityGroup {
 
     @Inject
     ModelOne modelOne;
@@ -34,6 +34,7 @@ public class ThirdActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getGraph().inject(this);
         setContentView(R.layout.third_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,15 +42,7 @@ public class ThirdActivity extends BaseActivity {
 
         ((TextView)findViewById(R.id.third_text)).setText("modelOne.foo=" + modelOne.getFoo());
 
-        Timber.d("ThirdActivity setup : %s", modelOne.getFoo());
-    }
 
-    @Override
-    protected void setupComponent(AppComponent appComponent) {
-        DaggerSubActivityComponent.builder()
-                .appComponent(appComponent)
-                .subActivityModule(new SubActivityModule())
-                .build()
-                .inject(this);
+        Timber.d("ThirdActivity setup : %s", modelOne.getFoo());
     }
 }

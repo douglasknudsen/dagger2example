@@ -22,7 +22,7 @@ import timber.log.Timber;
  * @since 9/27/15.
  */
 
-public class SecondActivity extends BaseActivity {
+public class SecondActivity extends ActivityGroup {
 
     @Inject
     ModelOne modelOne;
@@ -33,6 +33,8 @@ public class SecondActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getGraph().inject(this);
 
         setContentView(R.layout.second_activity);
 
@@ -48,15 +50,9 @@ public class SecondActivity extends BaseActivity {
 
         ((TextView)findViewById(R.id.second_text)).setText("modelOne.foo=" + modelOne.getFoo());
 
+
         Timber.d("SecondActivity setup : %s", modelOne.getFoo());
     }
 
-    @Override
-    protected void setupComponent(AppComponent appComponent) {
-        DaggerSubActivityComponent.builder()
-                .appComponent(appComponent)
-                .subActivityModule(new SubActivityModule())
-                .build()
-                .inject(this);
-    }
+
 }

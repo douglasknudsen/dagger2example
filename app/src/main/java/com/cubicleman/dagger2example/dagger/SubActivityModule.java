@@ -4,6 +4,7 @@ import com.cubicleman.dagger2example.model.ModelOne;
 
 import dagger.Module;
 import dagger.Provides;
+import timber.log.Timber;
 
 /**
  * @since 9/28/15.
@@ -14,6 +15,7 @@ public class SubActivityModule {
 
 
     public SubActivityModule() {
+        Timber.d("sdfasdf");
     }
 
     @Provides
